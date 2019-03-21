@@ -1,0 +1,34 @@
+# LOGGING
+logging:
+  level: 
+    root: info
+    org.hibernate: error
+    tech.espublico: debug
+  pattern:
+    dateformat: dd-MM-yyyy HH:mm:ss
+  file: /tmp/swSpringApplication.log
+
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:./data/swspringdb
+    username: sa 
+    password: sa
+  h2:
+    console:
+      enabled: true
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.H2Dialect
+  main:
+    banner-mode: "off"
+
+    
+    
+
+      
+
+        
+

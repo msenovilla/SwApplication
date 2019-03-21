@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>SW Spring</title>
+<link href="webjars/bootstrap/4.3.1/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<script src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="webjars/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+	<h1 class="text-center">List of films</h1>
+	<div class="container">
+		<form action="#" th:action="@{/getCountFilms}" method="post">
+			<input type="submit" value="Get top pilot" />
+			<span th:if="${top.name != ''}" class="label-default">Top pilot: <span th:text="${top.name}"></span></span>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col"></th>
+						<th scope="col">Title</th>
+						<th scope="col">Episode Id</th>
+						<th scope="col">Director</th>
+						<th scope="col">Producer</th>
+					</tr>
+				</thead>
+				<tbody th:each="film, stat:${films}">
+					<tr>
+						<td><input type="checkbox"
+							th:name="|films[${stat.index}]|"
+							th:value="${film.title}" /></td>
+							
+						<td th:text="${film.title}" scope="row"></td>
+						<td th:text="${film.episodeId}"></td>
+						<td th:text="${film.director}"></td>
+						<td th:text="${film.producer}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+		
+	</div>
+</body>
+</html>

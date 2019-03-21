@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>SW Spring</title>
+<link href="webjars/bootstrap/4.3.1/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<script src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="webjars/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+	<h1 class="text-center">Top pilot</h1>
+	<div class="container">
+		<h2>Top pilot of films:</h2>
+		<table>
+			<tr th:each="film:${films}">
+				<td>-<span th:text="${film}"></span></td>
+			</tr>
+		</table>
+		<h3 th:if="${top.name != ''}" class="label-default">
+			<br/>=&gt; <span th:text="${top.name}"></span>
+		</h3>
+		<form action="#" th:action="@{/listFilms}" method="get">
+			<input type="submit" value="Back" />
+		</form>
+	</div>
+</body>
+</html>

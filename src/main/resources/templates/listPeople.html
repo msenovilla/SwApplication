@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>SW Spring</title>
+<link href="webjars/bootstrap/4.3.1/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<script src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="webjars/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+	<h1 class="text-center">List of people</h1>
+	<div class="container">
+		 
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Gender</th>
+					<th scope="col">Height</th>
+					<th scope="col">Num. of films</th>
+					<th scope="col">Films</th>
+				</tr>
+			</thead>
+			<tbody th:each="person:${people}"> 
+				<tr>
+					<th th:text="${person.name}" scope="row"></th>
+					<td th:text="${person.gender}"></td>
+					<td th:text="${person.height}"></td>
+					<td th:text="${#lists.size(person.films)}"></td>
+					<td>
+						<span th:each="film:${person.films}">
+						- <span th:text="${film.title}" /><br/>
+						</span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+	</div>
+</body>
+</html>
