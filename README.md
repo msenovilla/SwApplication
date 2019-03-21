@@ -7,12 +7,12 @@ Moreover, this application will give these utilities:
 
 Technologies used for this project:
 
-IDE Eclipse 2018, with pluggins:
-Spring IDE
-Checkstyle
-Web Tools
-Java SE 1.8
-Spring Boot (version 2) https://spring.io/projects/spring-boot
-Maven https://maven.apache.org/
-JUnit https://junit.org/junit5/
-H2 http://www.h2database.com/html/main.html
+IDE Eclipse 2018, with pluggins:<br/>
+Spring IDE<br/>
+Checkstyle<br/>
+Web Tools<br/>
+Java SE 1.8<br/>
+Spring Boot (version 2) https://spring.io/projects/spring-boot<br/>
+Maven https://maven.apache.org/<br/>
+JUnit https://junit.org/junit5/<br/>
+H2 http://www.h2database.com/html/main.html<br/>
