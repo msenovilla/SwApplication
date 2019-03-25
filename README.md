@@ -1,3 +1,5 @@
+<h1>Sw Application</h1>
+
 Application for import to a local DB the information gotten from Stars Wars Api (https://swapi.co)
 
 This application will import all the data related with films, people and starship, and will create an embeded DB with them.
@@ -7,12 +9,12 @@ Moreover, this application will give these utilities:
 
 Technologies used for this project:
 
-IDE Eclipse 2018, with pluggins:<br/>
-Spring IDE<br/>
-Checkstyle<br/>
-Web Tools<br/>
-Java SE 1.8<br/>
-Spring Boot (version 2) https://spring.io/projects/spring-boot<br/>
-Maven https://maven.apache.org/<br/>
-JUnit https://junit.org/junit5/<br/>
-H2 http://www.h2database.com/html/main.html<br/>
+- IDE Eclipse 2018, with pluggins:<br/>
+    - Spring IDE<br/>
+    - Checkstyle<br/>
+    - Web Tools<br/>
+- Java SE 1.8<br/>
+- Spring Boot (version 2) https://spring.io/projects/spring-boot<br/>
+- Maven https://maven.apache.org/<br/>
+- JUnit https://junit.org/junit5/<br/>
+- H2 http://www.h2database.com/html/main.html<br/>
