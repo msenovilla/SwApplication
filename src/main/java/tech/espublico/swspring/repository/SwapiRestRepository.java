@@ -9,6 +9,7 @@ package tech.espublico.swspring.repository;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.core.ParameterizedTypeReference;
@@ -19,6 +20,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
+
 import tech.espublico.swspring.entity.FilmJson;
 import tech.espublico.swspring.entity.PersonJson;
 import tech.espublico.swspring.entity.StarshipJson;
@@ -26,75 +28,122 @@ import tech.espublico.swspring.entity.SwlistJson;
 
 @Repository("swapiRestRepository")
 public class SwapiRestRepository {
-  private static final Log LOG = LogFactory.getLog(SwapiRestRepository.class);
+	private static final Log LOG = LogFactory.getLog(SwapiRestRepository.class);
 
-  private static final String USER_AGENT =
-      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-          + "(KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36";
-  private static final String URL_SWAPI = "https://swapi.co/api/";
+	private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+			+ "(KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36";
+	private static final String URL_SWAPI = "https://swapissss.co/api/";
 
-  private HttpEntity<String> entity;
+	private HttpEntity<String> entity;
 
-  /**
-   * Default constructor.
-   * 
-   */
-  public SwapiRestRepository() {
-    HttpHeaders headers = new HttpHeaders();
-    headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-    headers.add("user-agent", USER_AGENT);
-    entity = new HttpEntity<String>("parameters", headers);
-  }
+	/**
+	 * Default constructor.
+	 * 
+	 */
+	public SwapiRestRepository() {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		headers.add("user-agent", USER_AGENT);
+		entity = new HttpEntity<String>("parameters", headers);
+	}
 
-  /**
-   * Get the list of films from the API.
-   * 
-   * @return List of FilmJson films
-   */
-  public List<FilmJson> getFilmsJson() {
-    // Template for REST request
-    RestTemplate restTemplate = new RestTemplate();
-    ArrayList<FilmJson> filmsJson = new ArrayList<FilmJson>();
+	/**
+	 * Get the list of films from the API.
+	 * 
+	 * @return List of FilmJson films
+	 */
+	public List<FilmJson> getFilmsJson() {
+		// Template for REST request
+		RestTemplate restTemplate = new RestTemplate();
+		ArrayList<FilmJson> filmsJson = new ArrayList<FilmJson>();
 
-    ResponseEntity<SwlistJson<FilmJson>> responseFilms;
-    String url = URL_SWAPI + "films?format=json";
-    while (url != null && url.length() > 0) {
-      // Getting next URL REST page
-      responseFilms = restTemplate.exchange(url, HttpMethod.GET, entity,
-          new ParameterizedTypeReference<SwlistJson<FilmJson>>() {});
-      filmsJson.addAll(responseFilms.getBody().results);
+		ResponseEntity<SwlistJson<FilmJson>> responseFilms;
+		String url = URL_SWAPI + "films?format=json";
+		while (url != null && url.length() > 0) {
+			// Getting next URL REST page
+			responseFilms = restTemplate.exchange(url, HttpMethod.GET, entity,
+					new ParameterizedTypeReference<SwlistJson<FilmJson>>() {
+					});
+			filmsJson.addAll(responseFilms.getBody().results);
 
-      url = responseFilms.getBody().next;
-      LOG.debug("url=>" + url);
-    }
-    return filmsJson;
-  }
+			url = responseFilms.getBody().next;
+			LOG.debug("url=>" + url);
+		}
+		return filmsJson;
+	}
 
-  /**
-   * Return the person information related with this url from de API.
-   * 
-   * @param url Url to get the person
-   * @return PersonJson
-   */
-  public PersonJson getPersonJson(String url) {
-    // Template for REST request
-    RestTemplate restTemplate = new RestTemplate();
+	/**
+	 * Return the person information related with this url from de API.
+	 * 
+	 * @param url Url to get the person
+	 * @return PersonJson
+	 */
+	public PersonJson getPersonJson(String url) {
+		// Template for REST request
+		RestTemplate restTemplate = new RestTemplate();
 
-    return ((ResponseEntity<PersonJson>) restTemplate.exchange(url + "?format=json", HttpMethod.GET,
-        entity, PersonJson.class)).getBody();
-  }
+		return ((ResponseEntity<PersonJson>) restTemplate.exchange(url + "?format=json", HttpMethod.GET, entity,
+				PersonJson.class)).getBody();
+	}
 
-  /**
-   * Return the startship information related with this url from de API.
-   * 
-   * @param url Url to get the starship
-   * @return PersonJson
-   */
-  public StarshipJson getStarshipJson(String url) {
-    // Template for REST request
-    RestTemplate restTemplate = new RestTemplate();
+	/**
+	 * Return the startship information related with this url from de API.
+	 * 
+	 * @param url Url to get the starship
+	 * @return PersonJson
+	 */
+	public StarshipJson getStarshipJson(String url) {
+		// Template for REST request
+		RestTemplate restTemplate = new RestTemplate();
 
-    return ((ResponseEntity<StarshipJson>) restTemplate.exchange(url + "?format=json",
-        HttpMethod.GET, entity, StarshipJson.class)).getBody();
-  }
+		return ((ResponseEntity<StarshipJson>) restTemplate.exchange(url + "?format=json", HttpMethod.GET, entity,
+				StarshipJson.class)).getBody();
+	}
+
+	/**
+	 * Return the list of people from the API.
+	 * 
+	 * @return List of PersonJson
+	 */
+	public List<PersonJson> getPeopleJson() {
+		RestTemplate restTemplate = new RestTemplate();
+		ArrayList<PersonJson> peopleJson = new ArrayList<PersonJson>();
+
+		ResponseEntity<SwlistJson<PersonJson>> responseFilms;
+		String url = URL_SWAPI + "people?format=json";
+		while (url != null && url.length() > 0) {
+			responseFilms = restTemplate.exchange(url, HttpMethod.GET, entity,
+					new ParameterizedTypeReference<SwlistJson<PersonJson>>() {
+					});
+			// Getting next URL REST page
+			peopleJson.addAll(responseFilms.getBody().results);
+			url = responseFilms.getBody().next;
+			LOG.debug("url=>" + url);
+		}
+		return peopleJson;
+	}
+
+	/**
+	 * Return the list of starship from the API.
+	 * 
+	 * @return List of StarshipJson
+	 */
+	public List<StarshipJson> getStarshipsJson() {
+		RestTemplate restTemplate = new RestTemplate();
+		ArrayList<StarshipJson> starships = new ArrayList<StarshipJson>();
+
+		ResponseEntity<SwlistJson<StarshipJson>> responseStarships;
+		String url = URL_SWAPI + "starships?format=json";
+		while (url != null && url.length() > 0) {
+			responseStarships = restTemplate.exchange(url, HttpMethod.GET, entity,
+					new ParameterizedTypeReference<SwlistJson<StarshipJson>>() {
+					});
+			// Getting next URL REST page
+			starships.addAll(responseStarships.getBody().results);
+			url = responseStarships.getBody().next;
+			LOG.debug("url=>" + url);
+		}
+
+		return starships;
+	}
 }

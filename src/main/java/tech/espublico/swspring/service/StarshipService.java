@@ -7,7 +7,9 @@ package tech.espublico.swspring.service;
  */
 
 import java.util.List;
+
 import tech.espublico.swspring.entity.Starship;
+import tech.espublico.swspring.entity.StarshipJson;
 
 public interface StarshipService {
   /**
@@ -15,7 +17,7 @@ public interface StarshipService {
    * 
    * @return List of Starship starship
    */
-  public abstract List<Starship> getStarshipsJson();
+  public abstract List<StarshipJson> getStarshipsJson();
 
   /**
    * Insert the list of starship in DB.
